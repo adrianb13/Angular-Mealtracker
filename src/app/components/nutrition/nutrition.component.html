@@ -1,0 +1,25 @@
+<div>
+  <div>
+    <hr />
+    <div class="tableTitle">"{{name}}" Details</div>
+    <table class="table">
+      <thead>
+        <tr>
+
+          <th>Calories (cal):</th>
+          <th>Fat: (g)</th>
+          <th>Carbs: (g)</th>
+          <th>Protein: (g)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr key={props.selFood.id}>
+          <td>{{calories}}</td>
+          <td>{{fat}}</td>
+          <td>{{carbs}}</td>
+          <td>{{protein}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.container {
+  width: 60%;
+  min-height: 20%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+@media(max-width: 900px){
+  .container{
+    width: 85%;
+  }
+}

@@ -1,0 +1,90 @@
+.listHeader {
+  font-size: 35px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.selectPrompt {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.itemBox {
+  width: 440px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  margin: 0 auto;
+}
+.listItem {
+  width: 75%;
+  word-wrap: break-word;
+  cursor: pointer;
+  font-weight: bold;
+  color: darkgreen;
+}
+.listFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.listMeal {
+  width: 60%;
+}
+.date {
+  width: 40%;
+  margin: 0 20px;
+}
+.listUpd:link , .listUpd:visited , .listUpd:hover , .listUpd:active {
+  cursor: pointer;
+  width: 25%;
+  align-self: center;
+  color: orangered;
+  text-decoration: none;
+}
+.linkBox {
+  margin: 30px auto;
+}
+.addItem {
+  color: blue;
+  text-decoration: underline;
+  text-decoration-color: red;
+}
+
+.backDisplay{
+  width: 100px;
+  cursor: pointer;
+  text-align: left;
+  color: red;
+  font-weight: bold;
+  margin-left: 50px;
+}
+i {
+  border: solid red;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+  margin-bottom: 2px;
+}
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+@media(max-width: 450px){
+  .itemBox{
+    width: 90%;
+  }
+  .listItem{
+    flex-direction: column;
+  }
+  .date{
+    font-size: 20px;
+  }
+  .listMeal, .date {
+    width: 100%;
+    margin: 0;
+  }
+  .backDisplay{
+    margin-left: 20px;
+  }
+}

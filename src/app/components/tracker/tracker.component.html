@@ -1,0 +1,39 @@
+<div>
+  <div *ngIf="!trackerList">
+    <div class="backDisplay" (click)="getBack()"><i class="arrow left"></i> Back</div>
+  </div>
+    <div class="listHeader">{{ listHeader }}</div>
+    <div *ngIf="trackerData">
+      <div class="selectPrompt">(Select a Tracker to view)</div>
+      <div *ngFor="let data of dataList">
+        
+        <div *ngIf="tracker">
+          <div class="itemBox">
+            <div class="listItem" id="{{data.id}}" (click)="getMeals(data.id)">{{data.name}}</div>
+            <a routerLink="/tracker/{{data.id}}" class="listUpd">Update</a>
+          </div>
+        </div>
+
+        <div *ngIf="!tracker">
+          <div class="itemBox">
+            <div class="listItem listFlex">
+              <div class="listMeal" id="{{data.id}}" (click)="getData(data.id)">{{data.name}}</div>
+              <div class="date">{{format(data.createdAt)}}</div>
+            </div>
+            <a routerLink="/{{apiRoute}}/{{data.id}}" class="listUpd">Update</a>
+          </div>
+        </div>
+        
+      </div>  
+    </div>
+    <div *ngIf="!trackerData">
+      <div>Not Available</div>
+    </div>
+    <div class="linkBox">
+      <a routerLink="/add" class="addItem">Add a {{addItem}}</a>
+    </div>
+  
+</div>
+<div *ngIf="itemSelected">
+  <app-nutrition></app-nutrition>
+</div>
