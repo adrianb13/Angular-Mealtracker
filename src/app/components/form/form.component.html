@@ -1,0 +1,48 @@
+
+<div>
+  <div class="pad">
+    <div class="formHead">
+      <div>{{ selectedItem }}</div>
+      <div>Add A {{ addItem }}</div>
+    </div>
+
+    <div class="container">
+      <form class="addForm">
+        <div>
+          <div class="label">Name:</div>
+          <input type="text" [(ngModel)]="name" name="name" placeholder="{{placeholder}}" required />
+        </div>
+        <div *ngIf="food">
+          <div>
+            <div class="label">Fat: (in grams)</div>
+            <input type="text" [(ngModel)]="fat" name="fat" placeholder="{{fat}}" required />
+          </div>
+          <div>
+            <div class="label">Carbs: (in grams)</div>
+            <input type="text" [(ngModel)]="carbs" name="carbs" placeholder="{{carbs}}" required />
+          </div>
+          <div>
+            <div class="label">Protein: (in grams)</div>
+            <input type="text" [(ngModel)]="protein" name="protein" placeholder="{{protein}}" required />
+          </div>
+          <div>
+            <div class="label">Calories:</div>
+            <input type="text" [(ngModel)]="calories" name="calories" placeholder="{{calories}}" required />
+          </div>
+        </div>
+        <div *ngIf="add">
+          <div>
+            <div class="message">{{message}}</div>
+          </div>
+          <div class="btnBox">
+            <div class="addSub" (click)="formSubmit($event)">Submit</div>
+            <div class="cancel" routerLink="/">Back</div>
+          </div>
+          <div *ngIf="food">
+            <div (click)="addAnother($event)" class="addAnother">Submit & Add Another</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

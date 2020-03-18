@@ -4,13 +4,13 @@
   </div>
     <div class="listHeader">{{ listHeader }}</div>
     <div *ngIf="trackerData">
-      <div class="selectPrompt">(Select a Tracker to view)</div>
+      <div class="selectPrompt">(Select a {{addItem}} to view)</div>
       <div *ngFor="let data of dataList">
         
         <div *ngIf="tracker">
           <div class="itemBox">
             <div class="listItem" id="{{data.id}}" (click)="getMeals(data.id)">{{data.name}}</div>
-            <a routerLink="/tracker/{{data.id}}" class="listUpd">Update</a>
+            <a routerLink="/{{apiRoute}}/{{data.id}}" class="listUpd">Update</a>
           </div>
         </div>
 

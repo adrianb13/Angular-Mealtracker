@@ -11,6 +11,7 @@ import { TrackerComponent } from './components/tracker/tracker.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { HomeComponent } from './components/home/home.component';
 import { NutritionComponent } from './components/nutrition/nutrition.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,30 @@ import { NutritionComponent } from './components/nutrition/nutrition.component';
     TrackerComponent,
     BannerComponent,
     HomeComponent,
-    NutritionComponent
+    NutritionComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
+      {
+        path: "add",
+        component: FormComponent
+      },
+      {
+        path: "trackers/:id",
+        component: FormComponent
+      },
+      {
+        path: "meals/:id",
+        component: FormComponent
+      },
+      {
+        path: "food/:id",
+        component: FormComponent
+      },
       {
         path: "",
         component: HomeComponent
