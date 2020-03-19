@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 4200;
 
-app.use(express.static(__dirname,  "./dist/mealtracker-angular")); // set static files location, in this case the route, add a file name if not
+app.use(express.static(__dirname + "./dist/mealtracker-angular")); // set static files location, in this case the route, add a file name if not
 
 //Routing if Hashbang in URL
 app.get('/', function (req, res) {
