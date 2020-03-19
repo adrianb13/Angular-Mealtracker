@@ -62,7 +62,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mealtracker-angular:build"
+            "browserTarget": "mealtracker-angular:build",
+            "proxyConfig": "proxyconfig.json"
           },
           "configurations": {
             "production": {
