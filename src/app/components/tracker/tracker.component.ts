@@ -11,12 +11,13 @@ import * as variables from "../../service/variables";
 })
 export class TrackerComponent implements OnInit {
 
-  listHeader = variables.Trackers;
-  addItem = variables.Tracker;
-  trackerList = true;
-  trackerData = false;
-  tracker = true;
-  itemSelected = false;
+  listHeader = variables.Trackers; //Display Header
+  addItem = variables.Tracker;  //Tracks what should be added on Add Button
+
+  trackerList = true; //Show or hide "Back" button
+  trackerData = false; //If data is present 
+  tracker = true; //If on tracker screen
+  itemSelected = false; //Show or hide Nutrition table
 
   dataList = [];
   trackers = [];
@@ -38,8 +39,9 @@ export class TrackerComponent implements OnInit {
       if(res){
         this.trackers.push(res);
         if(this.trackers[0].length > 0){
+          this.Nutri.setTrackers(this.trackers[0]); //Sends to Nutri Service for use in other components
           this.trackers = this.trackers[0];
-          this.dataList = this.trackers;
+          this.dataList = this.trackers; //Sends specific list to be displayed
           this.trackerData = true;
         }
       }
@@ -65,8 +67,9 @@ export class TrackerComponent implements OnInit {
         //console.log("meals",res)
         this.meals.push(res);
         if(this.meals[0].length > 0){
+          this.Nutri.setMeals(this.meals[0]); //Sends to Nutri Service for use in other components
           this.meals = this.meals[0];
-          this.dataList = this.meals.reverse();
+          this.dataList = this.meals.reverse(); //Sends specific list to be displayed
           this.trackerData = true;
           this.tracker = false;
           this.listHeader = variables.Meals;
@@ -103,8 +106,9 @@ export class TrackerComponent implements OnInit {
           //console.log("food",res);
           this.food.push(res);
           if(this.food[0].length > 0){
+            this.Nutri.setFood(this.food[0]); //Sends to Nutri Service for use in other components
             this.food = this.food[0];
-            this.dataList = this.food.reverse();
+            this.dataList = this.food.reverse(); //Sends specific list to be displayed
             this.trackerData = true;
             this.tracker = false;
             this.listHeader = variables.FoodItems;

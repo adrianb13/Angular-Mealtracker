@@ -49,7 +49,7 @@
         </div>
         <div *ngIf="!add">
           <div class="btnBox">
-            <div class="addSub" >Submit</div>
+            <div class="addSub" (click)="updateItem($event)">Submit</div>
             <div class="cancel" routerLink="/">Back</div>
           </div>
           <div (click)="deleteItem()" class="addAnother delete">Delete</div>

@@ -5,6 +5,7 @@ import { DataListService } from 'src/app/service/data-list.service';
 import * as variables from "../../service/variables";
 import { NutritionService } from 'src/app/service/nutrition.service';
 import { IfStmt } from '@angular/compiler';
+import { variable } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-form',
@@ -19,6 +20,7 @@ export class FormComponent implements OnInit {
   add = true;
   food = false;
 
+  selected = []
   message = "";
   name = "";
   fat = null;
@@ -34,7 +36,7 @@ export class FormComponent implements OnInit {
     private Nutri: NutritionService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.url = this.Route.snapshot.url[0].path;
     console.log(this.Route.snapshot)
     this.formType()
@@ -52,17 +54,36 @@ export class FormComponent implements OnInit {
       this.food = true;
       this.placeholder = "Ex: Salad";
       this.selectedItem = "Meal: " + this.Nutri.itemValue[0].name;
-    } else if (this.url === "update" && this.addItem === variables.Tracker){
+    } else {
+      // If url is "update"
+      this.findSelected();
+    };
+  }
+
+  //Displays info of selected Tracker/Meal/Food if Updating/Deleting
+  findSelected(){
+    if (this.url === "update" && this.addItem === variables.Tracker){
       this.add = false;
+      this.selected = this.Nutri.trackersValue.filter(res => res.id === +this.Route.snapshot.params.id);
+      this.selectedItem = variables.Tracker + ": " + this.selected[0].name;
       
     } else if (this.url === "update" && this.addItem === variables.Meal){
       this.add = false;
+      this.selected = this.Nutri.mealsValue.filter(res => res.id === +this.Route.snapshot.params.id2);
+      this.selectedItem = variables.Meal + ": " + this.selected[0].name;
       
     } else if (this.url === "update" && this.addItem === variables.FoodItem){
       this.add = false;
-      this.food = true;
+      this.food = true; 
+      this.selected = this.Nutri.foodValue.filter(res => res.id === +this.Route.snapshot.params.id2);
+      this.selectedItem = variables.FoodItem + ": " + this.selected[0].name;
+      this.name = this.selected[0].name
+      this.fat = this.selected[0].fat;
+      this.carbs = this.selected[0].carbs;
+      this.protein = this.selected[0].protein;
+      this.calories = this.selected[0].calories;
       
-    }
+    };
   }
 
   formValidate(){
@@ -105,8 +126,6 @@ export class FormComponent implements OnInit {
           this.Router.navigate([""]);
         });
       };
-      console.log(this.name,this.fat,this.carbs,this.protein,this.calories, this.Info.mealId)
-      console.log("valid") 
     };
   }
 
@@ -124,6 +143,31 @@ export class FormComponent implements OnInit {
       });
     };
   };
+
+  updateItem(event){
+    event.preventDefault();
+    if(this.addItem === variables.Tracker){
+      let item = {
+        id: this.Route.snapshot.params.id,
+        name: this.name
+      }
+      this.DataList.updateTracker(item, this.Route.snapshot.params.id).subscribe(res => {
+        this.Router.navigate([""]);
+      });
+    } else if (this.addItem === variables.Meal){
+      let item = {
+        id: this.Route.snapshot.params.id2,
+        name: this.name
+      }
+      this.DataList.updateMeal(item, this.Route.snapshot.params.id1, this.Route.snapshot.params.id2).subscribe(res => {
+        this.Router.navigate([""]);
+      })
+    } else if (this.addItem === variables.FoodItem){
+      this.DataList.updateFood(this.name, this.fat, this.carbs, this.protein, this.calories, this.Route.snapshot.params.id1, this.Route.snapshot.params.id2).subscribe(res => {
+        this.Router.navigate([""]);
+      })
+    }
+  }
 
   deleteItem(){
     if(this.addItem === variables.Tracker){

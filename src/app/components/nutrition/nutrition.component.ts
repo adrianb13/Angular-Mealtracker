@@ -24,7 +24,6 @@ export class NutritionComponent implements OnInit {
       this.fat = this.item[0].fat;
       this.carbs = this.item[0].carbs;
       this.protein = this.item[0].protein;
-      console.log(this.item)
     }
   }
 
