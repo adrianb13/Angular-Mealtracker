@@ -23,7 +23,7 @@ export class TrackerComponent implements OnInit {
   meals = [];
   food = [];
 
-  apiRoute = variables.apiTracker;
+  apiRoute = variables.apiBaseUpdate;
 
   constructor(
     private DataList: DataListService, 
@@ -55,22 +55,22 @@ export class TrackerComponent implements OnInit {
   getMeals(trackerId){
     //Sets chosen Tracker Id
     this.Info.setTrackerId(trackerId);
+    this.apiRoute = variables.apiBaseUpdate + "/" + trackerId;
+    this.updateSelected(trackerId);
 
     //Gets Meals connected to selected Tracker
-    this.DataList.getMeals(trackerId).subscribe(res => {  
-      
+    this.DataList.getMeals(trackerId).subscribe(res => {    
       //If data is present   
       if(res) {
         //console.log("meals",res)
         this.meals.push(res);
         if(this.meals[0].length > 0){
           this.meals = this.meals[0];
-          this.dataList = this.meals;
+          this.dataList = this.meals.reverse();
           this.trackerData = true;
           this.tracker = false;
           this.listHeader = variables.Meals;
           this.addItem = variables.Meal;
-          this.apiRoute = variables.apiMeal;
           this.Info.setAddItem(variables.Meal);
         } else {
           //If not data available - show "Not Available" view
@@ -85,21 +85,16 @@ export class TrackerComponent implements OnInit {
       //Changes view to not show tracker display
       this.trackerList = false;
     });
-
-    //Finds selected Tracker to save Info
-    let item = this.trackers.filter(res => res.id === trackerId)
-    if(item.length > 0){
-      this.Nutri.setItem(item);
-    };
   };
 
   //Get Food Info
   getData(dataId){
-
     //Checks if Meals or Foods are showing
     if(this.listHeader === variables.Meals){
       //Sets chosen Meal Id
       this.Info.setMealId(dataId);
+      this.apiRoute = variables.apiBaseUpdate + "/" + dataId;
+      this.updateSelected(dataId);
 
       //Gets related Foods connected to selected Meal
       this.DataList.getFood(dataId).subscribe(res => {
@@ -109,12 +104,11 @@ export class TrackerComponent implements OnInit {
           this.food.push(res);
           if(this.food[0].length > 0){
             this.food = this.food[0];
-            this.dataList = this.food;
+            this.dataList = this.food.reverse();
             this.trackerData = true;
             this.tracker = false;
             this.listHeader = variables.FoodItems;
             this.addItem = variables.FoodItem;
-            this.apiRoute = variables.apiFood;
             this.Info.setAddItem(variables.FoodItem);
           } else {
             //If not data available - show "Not Available" view
@@ -127,23 +121,12 @@ export class TrackerComponent implements OnInit {
         } 
       });
 
-      //Finds selected Meal to save Info
-      let item = this.meals.filter(res => res.id === dataId)
-      if(item.length > 0){
-        this.Nutri.setItem(item);
-      };
-
     } else if (this.listHeader = variables.FoodItems) {
       //Sets chosen Food Id
       this.Info.setFoodId(dataId);
-
-      //Finds selected Food Item to display Nutrional details
-      let item = this.food.filter(res => res.id === dataId)
-      //console.log(item)
-      if(item.length > 0){
-        this.Nutri.setItem(item);
-        this.itemSelected = true;
-      };
+      this.apiRoute = variables.apiBaseUpdate + "/" + dataId;
+      this.updateSelected(dataId);
+      
     };
 
     //Changes view to not show tracker display
@@ -178,7 +161,26 @@ export class TrackerComponent implements OnInit {
       this.addItem = variables.Meal;
       this.apiRoute = variables.apiMeal;
       this.Info.setAddItem(variables.Meal);
-    }
-  }
+    };
+  };
 
+  updateSelected(dataId){
+    if(this.listHeader === variables.Trackers){
+      let item = this.trackers.filter(res => res.id === dataId)
+      if(item.length > 0){
+        this.Nutri.setItem(item);
+      };
+    } else if (this.listHeader === variables.Meals){
+      let item = this.meals.filter(res => res.id === dataId)
+      if(item.length > 0){
+        this.Nutri.setItem(item);
+      };
+    } else if (this.listHeader === variables.FoodItems){
+      let item = this.food.filter(res => res.id === dataId)
+      if(item.length > 0){
+        this.Nutri.setItem(item);
+        this.itemSelected = true;
+      };
+    };
+  }
 }

@@ -32,15 +32,11 @@ import { FormComponent } from './components/form/form.component';
         component: FormComponent
       },
       {
-        path: "trackers/:id",
+        path: "update/:id1/:id2",
         component: FormComponent
       },
       {
-        path: "meals/:id",
-        component: FormComponent
-      },
-      {
-        path: "food/:id",
+        path: "update/:id",
         component: FormComponent
       },
       {

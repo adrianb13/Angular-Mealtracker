@@ -9,3 +9,5 @@ export const FoodItem = "Food Item";
 export const apiTracker = "trackers";
 export const apiMeal = "meals";
 export const apiFood = "food";
+
+export const apiBaseUpdate = "update";

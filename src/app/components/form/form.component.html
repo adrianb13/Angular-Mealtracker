@@ -2,8 +2,13 @@
 <div>
   <div class="pad">
     <div class="formHead">
-      <div>{{ selectedItem }}</div>
-      <div>Add A {{ addItem }}</div>
+      <div class="underline">{{ selectedItem }}</div>
+      <div *ngIf="add">
+        <div>Add A {{ addItem }}</div>
+      </div>
+      <div *ngIf="!add">
+        <div>Update or Delete {{ addItem }}</div>
+      </div>
     </div>
 
     <div class="container">
@@ -41,6 +46,13 @@
           <div *ngIf="food">
             <div (click)="addAnother($event)" class="addAnother">Submit & Add Another</div>
           </div>
+        </div>
+        <div *ngIf="!add">
+          <div class="btnBox">
+            <div class="addSub" >Submit</div>
+            <div class="cancel" routerLink="/">Back</div>
+          </div>
+          <div (click)="deleteItem()" class="addAnother delete">Delete</div>
         </div>
       </form>
     </div>

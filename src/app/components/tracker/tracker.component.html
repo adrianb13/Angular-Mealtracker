@@ -10,7 +10,7 @@
         <div *ngIf="tracker">
           <div class="itemBox">
             <div class="listItem" id="{{data.id}}" (click)="getMeals(data.id)">{{data.name}}</div>
-            <a routerLink="/{{apiRoute}}/{{data.id}}" class="listUpd">Update</a>
+            <a (click)="updateSelected(data.id)" routerLink="/{{apiRoute}}/{{data.id}}" class="listUpd">Update</a>
           </div>
         </div>
 
@@ -20,7 +20,7 @@
               <div class="listMeal" id="{{data.id}}" (click)="getData(data.id)">{{data.name}}</div>
               <div class="date">{{format(data.createdAt)}}</div>
             </div>
-            <a routerLink="/{{apiRoute}}/{{data.id}}" class="listUpd">Update</a>
+            <a (click)="updateSelected(data.id)" routerLink="/{{apiRoute}}/{{data.id}}" class="listUpd">Update</a>
           </div>
         </div>
         
