@@ -1,6 +1,6 @@
 {
-  "/api": {
-    "target": "https://mealtracker-java.herokuapp.com/",
+  "/api/*": {
+    "target": "https://mealtracker-java.herokuapp.com",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {"^/api" : ""}
