@@ -5,6 +5,8 @@ The application was deployed here: https://mealtracker-angular.herokuapp.com/
 
 The same application was also written in React Redux: https://github.com/adrianb13/ReactRedux-MealTracker
 
+Backend Repo: https://github.com/adrianb13/Java-MySQL-MealTracker (details described within it's README)
+
 ## About
 
 The application allows you to create a "Meal Tracker" of your own to help you keep track of your diet/nutrition. Each "Meal Tracker" consists of a list of "Meals/Snacks" that you eat everyday day. It will automatically date the "Meal" for you so you don't have to know what day it is or remember to keep your organized. Each "Meal" consists of multiple "Food Items." These "Food Items" allow you to enter the nutritional value of each item. All levels are editable/updatable and/or can be deleted.
