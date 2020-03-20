@@ -36,6 +36,7 @@ export class TrackerComponent implements OnInit {
     //Get Trackers (if present)
     this.Info.setAddItem(variables.Tracker);
     this.DataList.getTrackers().subscribe(res => {
+      console.log(res)
       if(res){
         this.trackers.push(res);
         if(this.trackers[0].length > 0){
