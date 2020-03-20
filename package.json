@@ -25,6 +25,7 @@
     "express": "^4.17.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "typescript": "~3.7.5",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -49,7 +50,7 @@
     "typescript": "~3.7.5"
   },
   "engines": {
-    "node": "12.15.0",
+    "node": "v12.15.0",
     "npm": "6.13.4"
   }
 }
