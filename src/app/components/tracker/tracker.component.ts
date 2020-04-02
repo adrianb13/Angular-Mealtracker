@@ -33,6 +33,7 @@ export class TrackerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.clear();
     //Get Trackers (if present)
     this.Info.setAddItem(variables.Tracker);
     this.DataList.getTrackers().subscribe(res => {
@@ -43,6 +44,7 @@ export class TrackerComponent implements OnInit {
           this.trackers = this.trackers[0];
           this.dataList = this.trackers; //Sends specific list to be displayed
           this.trackerData = true;
+          this.Info.setAddItem(variables.Tracker)
         }
       }
       
@@ -128,7 +130,7 @@ export class TrackerComponent implements OnInit {
     } else if (this.listHeader = variables.FoodItems) {
       //Sets chosen Food Id
       this.Info.setFoodId(dataId);
-      this.apiRoute = variables.apiBaseUpdate + "/" + dataId;
+      this.apiRoute = variables.apiBaseUpdate + "/" + this.Info.mealIdValue;
       this.updateSelected(dataId);
       
     };

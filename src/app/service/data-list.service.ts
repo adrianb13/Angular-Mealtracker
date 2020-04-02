@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as variables from "../service/variables";
 
 interface trackers {
   id: number,
@@ -60,34 +61,34 @@ export class DataListService {
 
   //Tracker API
   getTrackers(){
-    return this.http.get<trackers>("https://mealtracker-java.herokuapp.com/api/trackers");
+    return this.http.get<trackers>(variables.apiURL + "/api/trackers");
   };
   addTracker(name){
-    return this.http.post<addTracker>("https://mealtracker-java.herokuapp.com/api/trackers", {
+    return this.http.post<addTracker>(variables.apiURL + "/api/trackers", {
       name
     });
   };
   updateTracker(tracker, trackerId){
-    return this.http.put<updateTracker>("https://mealtracker-java.herokuapp.com/api/trackers/" + trackerId, {
+    return this.http.put<updateTracker>(variables.apiURL + "/api/trackers/" + trackerId, {
       id: tracker.id,
       name: tracker.name
     });
   };
   deleteTracker(trackerId){
-    return this.http.delete<deleteItem>("https://mealtracker-java.herokuapp.com/api/trackers/" + trackerId)
+    return this.http.delete<deleteItem>(variables.apiURL + "/api/trackers/" + trackerId)
   };
 
   //Meals API
   getMeals(trackerId){
-    return this.http.get<meals>("https://mealtracker-java.herokuapp.com/api/meals/" + trackerId);
+    return this.http.get<meals>(variables.apiURL + "/api/meals/" + trackerId);
   };
   addMeal(name, trackerId){
-    return this.http.post<addMeal>("https://mealtracker-java.herokuapp.com/api/meals/" + trackerId, {
+    return this.http.post<addMeal>(variables.apiURL + "/api/meals/" + trackerId, {
       name
     });
   };
   updateMeal(meal, trackerId, mealId){
-    return this.http.put<updateMeal>("https://mealtracker-java.herokuapp.com/api/meals/" + trackerId + "/" + mealId, {
+    return this.http.put<updateMeal>(variables.apiURL + "/api/meals/" + trackerId + "/" + mealId, {
       id: meal.id,
       name: meal.name,
       mealTracker: {
@@ -96,15 +97,15 @@ export class DataListService {
     });
   };
   deleteMeal(mealId){
-    return this.http.delete<deleteItem>("https://mealtracker-java.herokuapp.com/api/meals/"+ mealId)
+    return this.http.delete<deleteItem>(variables.apiURL + "/api/meals/"+ mealId)
   };
 
   //Food API
   getFood(mealId){
-    return this.http.get<foods>("https://mealtracker-java.herokuapp.com/api/food/" + mealId);
+    return this.http.get<foods>(variables.apiURL + "/api/food/" + mealId);
   };
   addFood(name, fat, carbs, protein, calories, mealId){
-    return this.http.post<addFood>("https://mealtracker-java.herokuapp.com/api/food/" + mealId, {
+    return this.http.post<addFood>(variables.apiURL + "/api/food/" + mealId, {
       name,
       fat,
       carbs,
@@ -113,7 +114,7 @@ export class DataListService {
     });
   };
   updateFood(name, fat, carbs, protein, calories, mealId, foodId){
-    return this.http.put<updateFood>("https://mealtracker-java.herokuapp.com/api/food/" + mealId + "/" + foodId, {
+    return this.http.put<updateFood>(variables.apiURL + "/api/food/" + mealId + "/" + foodId, {
       id: foodId,
       name: name,
       fat: fat,
@@ -126,6 +127,6 @@ export class DataListService {
     });
   };
   deleteFood(foodId){
-    return this.http.delete<deleteItem>("https://mealtracker-java.herokuapp.com/api/food/"+ foodId)
+    return this.http.delete<deleteItem>(variables.apiURL + "/api/food/"+ foodId)
   };
 }
