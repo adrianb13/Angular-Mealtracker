@@ -12,5 +12,5 @@ export const apiFood = "food";
 
 export const apiBaseUpdate = "update";
 
-export const apiURL = "https://mealtracker-java.herokuapp.com";
-//export const apiURL = "http://localhost:8080";
+//export const apiURL = "https://mealtracker-java.herokuapp.com";
+export const apiURL = "http://localhost:8080";

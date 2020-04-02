@@ -16,8 +16,8 @@
 
         <div *ngIf="!tracker">
           <div class="itemBox">
-            <div class="listItem listFlex">
-              <div class="listMeal" id="{{data.id}}" (click)="getData(data.id)">{{data.name}}</div>
+            <div class="listItem listFlex" (click)="getData(data.id)">
+              <div class="listMeal" id="{{data.id}}">{{data.name}}</div>
               <div class="date">{{format(data.createdAt)}}</div>
             </div>
             <a (click)="updateSelected(data.id)" routerLink="/{{apiRoute}}/{{data.id}}" class="listUpd">Update</a>
